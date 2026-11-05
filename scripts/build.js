@@ -123,14 +123,15 @@ function extractBadgesFromReadme(markdown, repo) {
   }
 
   // 1. Markdown linked badges: [![alt](imgUrl)](linkUrl)
-  const mdLinkedRegex = /\[!\[([^\]]*)\]\((https?:\/\/[^\s\)]+)\)\]\(([^)]+)\)/g;
+  // Supports balanced parentheses in imgUrl and linkUrl (e.g. Shields.io label with "(Leanback)" or "(x86|x64)")
+  const mdLinkedRegex = /\[!\[([^\]]*)\]\(\s*(https?:\/\/(?:[^\s()]|\([^\s()]*\))+)\s*\)\]\(\s*((?:[^\s()]|\([^\s()]*\))+)\s*\)/g;
   let match;
   while ((match = mdLinkedRegex.exec(headerSection)) !== null) {
     addBadge(match[1], match[2], match[3].trim());
   }
 
   // 2. Markdown standalone badges: ![alt](imgUrl)
-  const mdStandaloneRegex = /(?:^|[^\(])!\[([^\]]*)\]\((https?:\/\/[^\s\)]+)\)/g;
+  const mdStandaloneRegex = /(?:^|[^\[])!\[([^\]]*)\]\(\s*(https?:\/\/(?:[^\s()]|\([^\s()]*\))+)\s*\)/g;
   while ((match = mdStandaloneRegex.exec(headerSection)) !== null) {
     addBadge(match[1], match[2], null);
   }
