@@ -1,5 +1,5 @@
 {
-  "name": "site",
+  "name": "ntvampire.github.io",
   "version": "1.0.0",
   "description": "Portfolio and GitHub projects showcase automatically generated via GitHub Actions",
   "main": "scripts/build.js",

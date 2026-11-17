@@ -438,6 +438,7 @@ async function main() {
     if (EXCLUDE_FORKS && repo.fork) return false;
     if (EXCLUDE_ARCHIVED && repo.archived) return false;
     if (EXCLUDE_REPOS.includes(repo.name.toLowerCase())) return false;
+    if (repo.name.toLowerCase() === `${userLogin.toLowerCase()}.github.io`) return false;
     if (repo.topics && repo.topics.includes('portfolio-hide')) return false;
     return true;
   });

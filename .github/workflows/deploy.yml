@@ -48,8 +48,8 @@ jobs:
           GH_USERNAME: ${{ github.repository_owner }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Репозитории, которые не нужно показывать на странице (через запятую)
-          # По умолчанию исключаем сам репозиторий сайта "Site"
-          EXCLUDE_REPOS: 'Site'
+          # Исключаем репозиторий самого сайта
+          EXCLUDE_REPOS: 'ntvampire.github.io,Site'
           EXCLUDE_FORKS: 'true'
           EXCLUDE_ARCHIVED: 'true'
         run: |
