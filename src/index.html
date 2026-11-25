@@ -678,15 +678,19 @@
         if (downloads.length > 0) {
           downloadsHtml = `
             <div class="downloads-row">
-              ${downloads.map(act => `
+              ${downloads.map(act => {
+                const badgeText = act.badge || act.size || '';
+                const icon = (act.url && act.url.endsWith('/releases/latest')) ? '🚀' : '📥';
+                return `
                 <a href="${escapeHtml(act.url)}" class="action-btn" target="_blank" rel="noopener">
                   <span class="action-btn-left">
-                    <span>📥</span>
-                    <span>${escapeHtml(act.label || 'Скачать релиз')}</span>
+                    <span>${icon}</span>
+                    <span>${escapeHtml(act.label || 'Последний релиз ↗')}</span>
                   </span>
-                  ${act.size ? `<span class="action-badge">${escapeHtml(act.size)}</span>` : ''}
+                  ${badgeText ? `<span class="action-badge">${escapeHtml(badgeText)}</span>` : ''}
                 </a>
-              `).join('')}
+              `;
+              }).join('')}
             </div>
           `;
         }
